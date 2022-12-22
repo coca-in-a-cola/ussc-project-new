@@ -41,7 +41,20 @@ public class UsersController : ControllerBase
 
         return Ok(response);
     }
+    
+    [HttpPut("create")]
+    public IActionResult Create(string userEmail)
+    {   
+        var response = _userService.CreateAdmin(userEmail);
 
+        if (response == null)
+        {
+            _logger.LogInformation("Problem in create");
+            return BadRequest(new {message = "Didn't create"});
+        }
+        return Ok(response);
+    }
+    
     /// <summary>
     /// Регистрация пользователя
     /// </summary>

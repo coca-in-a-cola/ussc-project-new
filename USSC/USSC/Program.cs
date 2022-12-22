@@ -143,6 +143,7 @@ app.MapControllers();
 //         spa.Options.DefaultPageStaticFileOptions = clientAppDist;
 //     });
 // });
+app.UseSpaStaticFiles();
 app.UseSpa(spa =>
 {
     // To learn more about options for serving an Angular SPA from ASP.NET Core,
@@ -150,16 +151,5 @@ app.UseSpa(spa =>
 
     spa.Options.SourcePath = clientPath;
 });
-
-app.UseFileServer();
-app.UseSpaStaticFiles();
-
-
-DefaultFilesOptions options = new DefaultFilesOptions();
-options.DefaultFileNames.Clear();
-options.DefaultFileNames.Add("index.html");
-app.UseDefaultFiles(options);
-
-// app.UseEndpoints(x => x.MapControllers());
-
+ 
 app.Run();

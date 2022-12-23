@@ -4246,11 +4246,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\git\\USSC-project\\USSC\\UnitTests\\UnitTests.csproj",
+      "projectUniqueName": "E:\\USSC new\\ussc-project-new\\USSC\\UnitTests\\UnitTests.csproj",
       "projectName": "UnitTests",
-      "projectPath": "D:\\git\\USSC-project\\USSC\\UnitTests\\UnitTests.csproj",
+      "projectPath": "E:\\USSC new\\ussc-project-new\\USSC\\UnitTests\\UnitTests.csproj",
       "packagesPath": "C:\\Users\\kosty\\.nuget\\packages\\",
-      "outputPath": "D:\\git\\USSC-project\\USSC\\UnitTests\\obj\\",
+      "outputPath": "E:\\USSC new\\ussc-project-new\\USSC\\UnitTests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -4271,8 +4271,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\git\\USSC-project\\USSC\\USSC\\USSC.csproj": {
-              "projectPath": "D:\\git\\USSC-project\\USSC\\USSC\\USSC.csproj"
+            "E:\\USSC new\\ussc-project-new\\USSC\\USSC\\USSC.csproj": {
+              "projectPath": "E:\\USSC new\\ussc-project-new\\USSC\\USSC\\USSC.csproj"
             }
           }
         }

@@ -10,4 +10,5 @@ public interface IUserService: IService<UsersEntity>
     Task<SuccessResponse> CreateAdmin(string userEmail);
     Task<Guid> Update(UserModel entity);
     AuthenticateResponse UpdateTokens(UsersEntity user, string refreshToken);
+    public Task<SuccessResponse> Delete(string email);
 }

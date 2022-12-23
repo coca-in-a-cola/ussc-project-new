@@ -128,4 +128,13 @@ public class UsersController : ControllerBase
         var response = _userService.UpdateTokens(user, refreshToken);
         return Ok(response);
     }
+
+    [HttpDelete("delete")]
+    public async Task<IActionResult> DeleteUser(string email)
+    {
+        var response = await _userService.Delete(email);
+        if (response.Success)
+            return Ok();
+        return NoContent();
+    }
 }

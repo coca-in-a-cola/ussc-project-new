@@ -111,4 +111,18 @@ public class UserService : IUserService
         var result = _userRepository.UpdateRefreshToken(entity, refreshToken);
         return response;
     }
+
+    public async Task<SuccessResponse> Delete(string email)
+    {
+        try
+        {
+            var user = await _userRepository.GetByUserEmail(email);
+            var response = _userRepository.Delete(user);
+            return new SuccessResponse(true);
+        }
+        catch
+        {
+            return new SuccessResponse(false);
+        }
+    }
 }

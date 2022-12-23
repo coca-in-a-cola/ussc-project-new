@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+9aA7hKDtDmXlBS5ZP5lHxesWy9JBbycIRMa076/Bi2Nk3OxTWPAHjonj4LbzCX358Vm3DiZt5bbkeFsk8TZ9Q==",
+  "dgSpecHash": "9XKGbO1STpWfOvsJnVBL8A04veQ17QEgUpC+4B+BfAPdpnsiCeHfsdnGldkG5FskvuoAQjQezBYFdA+lvCFcHg==",
   "success": true,
-  "projectFilePath": "D:\\git\\USSC-project\\USSC\\UnitTests\\UnitTests.csproj",
+  "projectFilePath": "E:\\USSC new\\ussc-project-new\\USSC\\UnitTests\\UnitTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kosty\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\kosty\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

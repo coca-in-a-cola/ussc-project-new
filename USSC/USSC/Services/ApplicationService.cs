@@ -7,20 +7,22 @@ using USSC.Entities;
 
 namespace USSC.Services;
 
-public class ApplicationService: IApplicationService
+public class ApplicationService : IApplicationService
 {
     private readonly IApplicationRepository _applicationRepository;
     private readonly IConfiguration _configuration;
     private readonly IMapper _mapper;
     private readonly ILogger<ApplicationService> _logger;
 
-    public ApplicationService(IApplicationRepository applicationRepository, IConfiguration configuration, IMapper mapper, ILogger<ApplicationService> logger)
+    public ApplicationService(IApplicationRepository applicationRepository, IConfiguration configuration,
+        IMapper mapper, ILogger<ApplicationService> logger)
     {
         _applicationRepository = applicationRepository;
         _configuration = configuration;
         _mapper = mapper;
         _logger = logger;
     }
+
     public Task<Guid> Add(RequestModel model)
     {
         var application = _mapper.Map<RequestEntity>(model);
@@ -38,8 +40,9 @@ public class ApplicationService: IApplicationService
             var id = await _applicationRepository.Update(request);
             LogContext.PushProperty("Source", "ApplicationService");
             _logger.LogInformation("No application with this data");
-            return  new SuccessResponse(request.Id == id);
+            return new SuccessResponse(request.Id == id);
         }
+
         return new SuccessResponse(false);
     }
 
@@ -53,4 +56,19 @@ public class ApplicationService: IApplicationService
     public IEnumerable<RequestEntity> GetAll() => _applicationRepository.GetAll();
 
     public RequestEntity GetById(Guid id) => _applicationRepository.GetById(id);
+
+    public async Task<SuccessResponse> Delete(Guid userId, Guid directionId)
+    {
+        try
+        {
+            var request = _applicationRepository.GetByUserAndDirectionId(userId, directionId);
+            var response = _applicationRepository.Delete(request);
+            return new SuccessResponse(true);
+        }
+        catch
+        {
+            return new SuccessResponse(false);
+        }
+    }
 }
+

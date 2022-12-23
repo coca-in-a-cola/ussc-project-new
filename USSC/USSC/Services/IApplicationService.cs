@@ -9,4 +9,5 @@ public interface IApplicationService : IService<RequestEntity>
 
     Task<SuccessResponse> ProcessRequest(RequestModel model);
     public List<RequestEntity> GetByUserId(Guid userId);
+    public Task<SuccessResponse> Delete(Guid userId, Guid directionId);
 }

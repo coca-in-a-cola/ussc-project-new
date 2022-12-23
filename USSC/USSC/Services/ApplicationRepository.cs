@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Ocsp;
 using USSC.Dto;
 using USSC.Entities;
 namespace USSC.Services;
@@ -36,9 +37,10 @@ public class ApplicationRepository : IApplicationRepository
         return entity.Id;
     }
 
-    public Task Delete(RequestEntity entity)
+    public async Task Delete(RequestEntity entity)
     {
-        throw new NotImplementedException();
+        var result = _context.Set<RequestEntity>().Remove(entity);
+        await _context.SaveChangesAsync();
     }
 
     public RequestEntity GetByUserAndDirectionId(Guid userId, Guid directionId)

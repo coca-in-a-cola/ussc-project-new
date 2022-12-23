@@ -91,4 +91,12 @@ public class ApplicationController : ControllerBase
         return Ok(response);
     }
     
+    [HttpDelete("delete")]
+    public async Task<IActionResult> DeleteUser(Guid userId, Guid directionId)
+    {
+        var response = await _applicationService.Delete(userId, directionId);
+        if (response.Success)
+            return Ok();
+        return NoContent();
+    }
 }

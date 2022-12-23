@@ -1,3 +1,4 @@
+import { HOST } from '../api/host';
 import { setProfile } from '../store/slices/profileSlice';
 
 export function useGetProfile() {
@@ -5,7 +6,7 @@ export function useGetProfile() {
     const bearer = 'Bearer ' + localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
     let response = await fetch(
-      `https://localhost:7296/profile/getInfo?id=${userId}`,
+      HOST + `/profile/getInfo?id=${userId}`,
       {
         method: 'get',
         headers: {

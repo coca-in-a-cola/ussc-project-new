@@ -43,6 +43,13 @@ const allApplicationsSlice = createSlice({
           }).length
         )
           continue;
+        if ({
+          id: app.id,
+          userId: app.userId,
+          directionId: app.directionId,
+          isAllowed: app.allow,
+        } in state.allApplications) continue;
+        
         state.allApplications.push({
           id: app.id,
           userId: app.userId,

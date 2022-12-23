@@ -36,7 +36,7 @@ public class ApplicationController : ControllerBase
         //     DirectionId = Guid.Parse("23f10d61-a1c9-4de8-880d-dbe754b7e863"),
         // };
         var result = await _applicationService.Add(model);
-        return Ok(new SuccessResponse(true));
+        return Ok(new SuccessResponse(result != default));
     }
     
     /// <summary>

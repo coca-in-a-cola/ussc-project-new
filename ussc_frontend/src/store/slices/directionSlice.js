@@ -97,7 +97,7 @@ export const createDirections = createAsyncThunk(
 
         response = await response.json();
         debugger;
-        window.location.assign('http://localhost:3000/admin/create/testcase/'+response);
+        window.location.assign(HOST + '/admin/create/testcase/'+response);
         // dispatch(setDirections(response));
       } catch (error) {
         return rejectWithValue(error.message);

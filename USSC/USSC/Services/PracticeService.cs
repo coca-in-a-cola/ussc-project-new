@@ -26,11 +26,11 @@ public class PracticeService: IPracticeService
         return id;
     }
 
-    public async Task<SuccessResponse> AddAsync(PracticesModel model)
+    public async Task<Guid> AddAsync(PracticesModel model)
     {
         var entity = _mapper.Map<PracticesEntity>(model);
         var id = await _practiceRepository.Add(entity);
-        return new SuccessResponse(entity.Id == id);
+        return id;
     }
 
     public async Task<SuccessResponse> Delete(Guid id)

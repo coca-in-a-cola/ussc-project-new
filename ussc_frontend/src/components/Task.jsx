@@ -52,7 +52,7 @@ function Tsk(data) {
             <div className='task'>
                 <GoBackButton style={{ marginBottom: '43px' }} />
                 <TaskDescription text={practices[practiceIndex].roles[roleIndex].directions} />
-                <a href={"https://localhost:7296/testcase/download?directionId="+data.task}><div className="download">Скачать тестовое задание</div></a>
+                <a href={HOST + "/testcase/download?directionId="+data.task}><div className="download">Скачать тестовое задание</div></a>
             </div>
             <div className='task_submission'>
                 {/*<p className='info_text' style={{ marginBottom: '43px' }}>*/}

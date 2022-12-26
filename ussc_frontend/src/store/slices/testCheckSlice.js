@@ -32,7 +32,7 @@ export const sendCheckTest = createAsyncThunk(
         dispatch(getApplicationsByUserId(userId));
         debugger;
         dispatch(getAllApplications());
-        window.location.assign('http://localhost:3000/admin/testcases');
+        window.location.assign(HOST + '/admin/testcases');
       } catch (error) {
         return rejectWithValue(error.message);
       }

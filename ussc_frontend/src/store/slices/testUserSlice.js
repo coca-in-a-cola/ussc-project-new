@@ -3,7 +3,6 @@ import APPLICATIONS_API from '../../api/applicationsAPI';
 import {getApplicationsByUserId} from "./applicationSlice";
 import {getAllApplications} from "./allApplicationsSlice";
 import ALL_TESTS_API from "../../api/testCaseAPI";
-import { HOST } from '../../api/host';
 
 export const uploadTest = createAsyncThunk(
     'testcase/uploadTest',
@@ -21,7 +20,7 @@ export const uploadTest = createAsyncThunk(
           },
         });
 
-        window.location.assign(HOST + '/applications');
+        window.location.assign('http://localhost:3000/applications');
 
 
         dispatch(getApplicationsByUserId(userId));

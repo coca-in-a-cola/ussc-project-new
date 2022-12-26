@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import APPLICATIONS_API from '../../api/applicationsAPI';
 import {getApplicationsByUserId} from "./applicationSlice";
 import {getAllApplications} from "./allApplicationsSlice";
-import { HOST } from '../../api/host';
 
 export const sendCheckApplication = createAsyncThunk(
     'applications/approveApplication',
@@ -31,7 +30,7 @@ export const sendCheckApplication = createAsyncThunk(
         dispatch(getApplicationsByUserId(userId));
         debugger;
         dispatch(getAllApplications());
-        window.location.assign(HOST + '/admin/applications');
+        window.location.assign('http://localhost:3000/admin/applications');
       } catch (error) {
         return rejectWithValue(error.message);
       }

@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import DIRECTIONS_API from '../../api/directionsAPI';
-import { HOST } from '../../api/host';
 import ALL_TESTS_API from "../../api/testCaseAPI";
 
 const initialState = {
@@ -98,7 +97,7 @@ export const createDirections = createAsyncThunk(
 
         response = await response.json();
         debugger;
-        window.location.assign(HOST + '/admin/create/testcase/'+response);
+        window.location.assign('http://localhost:3000/admin/create/testcase/'+response);
         // dispatch(setDirections(response));
       } catch (error) {
         return rejectWithValue(error.message);

@@ -3,7 +3,6 @@ import APPLICATIONS_API from '../../api/applicationsAPI';
 import {getApplicationsByUserId} from "./applicationSlice";
 import {getAllApplications} from "./allApplicationsSlice";
 import ALL_TESTS_API from "../../api/testCaseAPI";
-import { HOST } from '../../api/host';
 
 export const sendCheckTest = createAsyncThunk(
     'testcase/approveTest',
@@ -33,7 +32,7 @@ export const sendCheckTest = createAsyncThunk(
         dispatch(getApplicationsByUserId(userId));
         debugger;
         dispatch(getAllApplications());
-        window.location.assign(HOST + '/admin/testcases');
+        window.location.assign('http://localhost:3000/admin/testcases');
       } catch (error) {
         return rejectWithValue(error.message);
       }

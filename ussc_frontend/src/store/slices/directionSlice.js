@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import DIRECTIONS_API from '../../api/directionsAPI';
+import { HOST } from '../../api/host';
 import ALL_TESTS_API from "../../api/testCaseAPI";
 
 const initialState = {

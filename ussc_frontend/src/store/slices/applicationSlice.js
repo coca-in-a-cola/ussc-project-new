@@ -65,7 +65,7 @@ export const sendApplication = createAsyncThunk(
       debugger;
       dispatch(getApplicationsByUserId(userId));
       alert("Заявка успешно отправлена!")
-      window.location.assign('http://localhost:3000/applications');
+      window.location.assign(HOST + '/applications');
     } catch (error) {
       return rejectWithValue(error.message);
     }

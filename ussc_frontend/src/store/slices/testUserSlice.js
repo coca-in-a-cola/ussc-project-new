@@ -3,6 +3,7 @@ import APPLICATIONS_API from '../../api/applicationsAPI';
 import {getApplicationsByUserId} from "./applicationSlice";
 import {getAllApplications} from "./allApplicationsSlice";
 import ALL_TESTS_API from "../../api/testCaseAPI";
+import { HOST } from '../../api/host';
 
 export const uploadTest = createAsyncThunk(
     'testcase/uploadTest',

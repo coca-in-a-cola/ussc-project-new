@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import APPLICATIONS_API from '../../api/applicationsAPI';
 import {getApplicationsByUserId} from "./applicationSlice";
 import {getAllApplications} from "./allApplicationsSlice";
+import { HOST } from '../../api/host';
 
 export const sendCheckApplication = createAsyncThunk(
     'applications/approveApplication',

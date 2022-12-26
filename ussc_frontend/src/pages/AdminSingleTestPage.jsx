@@ -11,6 +11,7 @@ import {getApplicationsByUserId} from "../store/slices/applicationSlice";
 import {getAllTests} from "../store/slices/allTestsSlice";
 import {getAllApplications} from "../store/slices/allApplicationsSlice";
 import ASTP from "../components/ASTP";
+import { HOST } from '../api/host';
 
 export default function AdminSingleTestPage() {
 
@@ -41,7 +42,7 @@ export default function AdminSingleTestPage() {
         <div className='test_wrapper'>
           <div className='test_info'>
             <div className='header'>Тестовое задание</div>
-            <a href={"https://localhost:7296/testcase/getUserSolution?userId="+userId+"&directionId="+testId}><div className="download">Скачать файл</div></a>
+            <a href={HOST + "/testcase/getUserSolution?userId="+userId+"&directionId="+testId}><div className="download">Скачать файл</div></a>
             <ASTP user={userId} test={testId}/>
           {/*  <div className='profile_person'>*/}
           {/*    <div className='profile_photo'>*/}

@@ -3,6 +3,7 @@ import FillProfileRequest from '../components/FillProfileRequest';
 import { useProfile } from '../hooks/use-profile';
 import DirectionsGrid from '../components/DirectionsGrid';
 import Button from '../components/Button'
+import { HOST } from '../api/host';
 
 const DirectionsPage = () => {
   const [_, isFilledProfile] = useProfile();

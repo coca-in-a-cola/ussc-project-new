@@ -7,6 +7,6 @@ public interface IPracticeService : IService<PracticesEntity>
 {
     Task<Guid> UpdateAsync(PracticesModel model);
     
-    Task<SuccessResponse> AddAsync(PracticesModel model);
+    Task<Guid> AddAsync(PracticesModel model);
     public Task<SuccessResponse> Delete(Guid id);
 }

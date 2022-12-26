@@ -15,6 +15,10 @@ export default function TableRow({type, ...props}) {
             return <EducationRow {...props} />;
         case 'profile_application':
             return <ProfileApplicationRow {...props} />;
+        case 'profile_application2':
+            return <ProfileApplication2Row {...props} />;
+        case 'profile_test':
+            return <ProfileTestRow {...props} />;
         case 'tests':
             return <TestRow {...props} />;
         case 'practicants':
@@ -148,6 +152,33 @@ function ProfileApplicationRow({directionName, role, date, status, directionId})
     return (
 
         <div className={'row ' + (isSelectApp() ? "select" : "")} onClick={checkAppAct}>
+            <span>{directionName}</span>
+            <span>{role}</span>
+            <span>{date}</span>
+            <span>{status}</span>
+        </div>
+    );
+}
+
+function ProfileApplication2Row({directionName, role, date, status, directionId}) {
+    return (
+        <div className={'row apppp'}>
+            <span>{directionName}</span>
+            <span>{role}</span>
+            <span>{date}</span>
+            <span>{status}</span>
+        </div>
+    );
+}
+
+function ProfileTestRow({directionName, role, date, status, directionId}) {
+    // const checkAppAct = () => dispatch(checkApp(directionId));
+    // const isSelectApp = () => (localStorage.getItem("curCheckApp") === directionId);
+    const dispatch = useDispatch();
+    debugger;
+    return (
+
+        <div className={'row'}>
             <span>{directionName}</span>
             <span>{role}</span>
             <span>{date}</span>

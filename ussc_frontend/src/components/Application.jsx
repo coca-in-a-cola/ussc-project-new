@@ -3,6 +3,7 @@ import Button from './Button';
 export default function Application({ directionName, applicationId, role, requestAllow, tests, testIndex }) {
   let text = "";
   let button = () => {return <></>};
+  let back = "";
   if(requestAllow === null)
   {
     text = 'Твоя заявка находится в рассмотрении. Теперь нужно дождаться, когда администратор проверит её и даст обратную связь, стаутс своей заявки ты можешь ослеживать здесь.';
@@ -12,6 +13,7 @@ export default function Application({ directionName, applicationId, role, reques
     if (requestAllow === false)
     {
       text = 'К сожалению, администратор отклонил твою заявку. Не расстраивайся, мы ждём тебя в следующем году!';
+      back = "dis";
       button = () => {return <></>};
     }
     else
@@ -33,18 +35,22 @@ export default function Application({ directionName, applicationId, role, reques
             if (tests[testIndex].isAllowed === true)
             {
               text = 'Поздравляем! Ты успешно справился с тестовым заданием, мы ждём тебя на практике от U summer school. Скоро здесь появится вся необходимая информация по её прохождению.';
-              button = () => {return (<a href={"./awdawdawd/"+applicationId}><Button >Результат тестового</Button></a>)}
+              back = "cool";
+              button = () => {return <></>};
+              // button = () => {return (<a href={"./awdawdawd/"+applicationId}><Button >Результат тестового</Button></a>)}
             }
             if (tests[testIndex].isAllowed === false)
             {
               text = 'К сожалению, тебе не удалось выполнить тестовое задание достаточно хорошо. Не расстраивайся, мы ждём тебя в следующем году!';
-              button = () => {return (<a href={"./awdawdawd/"+applicationId}><Button >Результат тестового</Button></a>)}
+              back = "dis";
+              button = () => {return <></>};
+              // button = () => {return (<a href={"./awdawdawd/"+applicationId}><Button >Результат тестового</Button></a>)}
             }
           }
       }
       debugger;
   return (
-    <div className='application'>
+    <div className={'application ' + back}>
       <div className='application_content'>
         <div className='texts'>
           <div className='direction_info'>

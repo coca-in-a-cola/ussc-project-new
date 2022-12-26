@@ -25,11 +25,12 @@ export const sendCheckApplication = createAsyncThunk(
         });
 
         response = await response.json();
-        alert(response.success? "Успешно одобрено" : "Ошибка");
+        alert(response.success? (allow ? "Успешно одобрено" : "Успешно отклонена") : "Ошибка");
 
         dispatch(getApplicationsByUserId(userId));
         debugger;
         dispatch(getAllApplications());
+        window.location.assign('http://localhost:3000/admin/applications');
       } catch (error) {
         return rejectWithValue(error.message);
       }
@@ -46,6 +47,7 @@ const checkAppSlice = createSlice({
   reducers: {
     checkApp(state, action) {
       localStorage.setItem('curCheckApp', action.payload);
+      window.location.reload();
     },
   },
   extraReducers: {

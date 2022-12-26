@@ -1,67 +1,71 @@
 import GoBackButton from '../components/GoBackButton';
 import Button from '../components/Button';
+import React from 'react';
 import plusIcon from '../img/plus.svg';
 import RolesEdit from '../components/RolesEdit';
-import { useFieldArray, useForm } from 'react-hook-form';
+import {useFieldArray, useForm} from 'react-hook-form';
+import {useParams} from 'react-router-dom';
+import {useEffect} from "react";
+import {useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
+import {getAllUsers} from '../store/slices/allUsersSlice';
+import {getAllTests} from "../store/slices/allTestsSlice";
+import {getDirections, addFileDirections} from "../store/slices/directionSlice";
+import {getAllApplications} from '../store/slices/allApplicationsSlice';
+import FileField from '../components/FileField';
 
 export default function AdminAddingTestCasePage() {
-    const { register, handleSubmit, setValue, control } = useForm({
-        defaultValues: {
-            direction_name: '',
-            direction_description: '',
-            roles: [],
-        },
+    const { testId } = useParams();
+    const dispatch = useDispatch();
+    const users = useSelector((state) => state.allUsers.users);
+    const applications = useSelector((state) => state.applications.applications);
+    const practices = useSelector((state) => state.directions.directions);
+
+    useEffect(() => {
+        dispatch(getAllUsers());
+        dispatch(getAllApplications());
+        dispatch(getDirections());
+        dispatch(getAllTests());
+    }, []);
+
+    const [file, setFile] = React.useState();
+    const onClick = () => {debugger;files.map((file, index) => dispatch(addFileDirections({direction:practices[practiceIndex].roles[index].id, file:file})) );}
+    const call = (direction) => {return onClick(direction)}
+    const practiceIndex = practices.findIndex((practice) => {
+        return practice.id === testId ;
     });
 
-    const onSubmit = (payload) => {
-        console.dir(payload);
-    };
+    const files = [];
+    const setFiles = (i, path) => {debugger;files[i] = path};
+    if(!practices.length) return;
+    practices[practiceIndex].roles.map((role, index) => {files.push({file: 0})});
+    debugger;
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <div className='content_wrapper'>
-                <div className='edits'>
-                    <GoBackButton />
+        <div className='content_wrapper'>
+            <div className='edits'>
+                <GoBackButton/>
+                <div className='heading'>Добавить тестовое</div>
+                <div className='task_submission'>
+                {
+                    practices.length ? (
+                        practices[practiceIndex].roles.map((role, indexx) => {
+                            return (
+                                <>
+                                    <div className='heading'>Для роли {role.directions}</div>
+                                <FileField title='Прикрепить ответ на задание' idd={indexx} type={"1"} set={setFiles} />
+                                <p className='info_text' style={{ marginTop: '15px' }}>
+                                    Добавить файл в формате .zip
+                                </p>
 
-                    <div className='heading'>Добавить тестовое</div>
-                    <div className='direction_forms'>
-                        <div className='direction_form name'>
-                            <h3>Название направления</h3>
-                            <textarea
-                                {...register('direction_name', { required: true })}
-                                cols='40'
-                                rows='3'
-                                placeholder='Название...'
-                            ></textarea>
-                        </div>
-
-                        <RolesEdit setValue={setValue} formControl={control} />
-
-                        <div className='direction_form image'>
-                            <h3>Добавить изображение</h3>
-                            <label className='input_file'>
-                                <input type='file' />
-                                <span className='label'>
-                  <img src={plusIcon} /> Выберите изображение
-                </span>
-                            </label>
-                        </div>
-
-                        <div className='direction_form description'>
-                            <h3>Описание направления</h3>
-                            <textarea
-                                name='direction_description'
-                                {...register('direction_description', { required: true })}
-                                cols='40'
-                                rows='3'
-                                placeholder='Описание...'
-                            ></textarea>
-                        </div>
-
-                        <Button type='submit'>Добавить тестовое</Button>
-                    </div>
+                                </>)
+                        })) : (<div></div>)
+                }
                 </div>
+                <Button style={{ marginTop: '40px' }} onClick={onClick}>Отправить</Button>)
+                {/*<Button onClick={call(role.directions)}>Добавить тестовое</Button>*/}
             </div>
-        </form>
-    );
+        </div>
+    )
+
 }

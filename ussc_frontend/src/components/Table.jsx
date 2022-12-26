@@ -8,7 +8,7 @@ import {getAllUsers} from '../store/slices/allUsersSlice';
 import {getAllTests} from "../store/slices/allTestsSlice";
 import {getDirections} from "../store/slices/directionSlice";
 
-export default function Table({type, user, applications, practice, direction}) {
+export default function Table({type, user, applications, practice, direction, tests}) {
     switch (type) {
         case 'applications':
             return <ApplicationsTable/>;
@@ -26,6 +26,10 @@ export default function Table({type, user, applications, practice, direction}) {
             return <EducationTable user={user}/>;
         case 'profile_application':
             return <ProfileApplicationTable applications={applications}/>;
+        case 'profile_application2':
+            return <ProfileApplication2Table applications={applications}/>;
+        case 'profile_test':
+            return <ProfileTestTable test={tests} user={user}/>;
         default:
             throw new Error('Incorrect Table type');
     }
@@ -43,25 +47,28 @@ function ApplicationsTable() {
         dispatch(getAllUsers());
         dispatch(getAllApplications());
     }, []);
+    let appli = [];
 
     return (
         <div className='table'>
             <TableHeader type='applications'/>
             {applications.length && users.length ? (
                 applications.map((app, index) => {
+                    if(appli.findIndex((api) => {return app.userId === api}) != -1) return;
                     if(!users) return;
                     const userIndex = users.findIndex((user) => {
                         return app.userId === user.id;
                     });
 
                     if (userIndex === -1) return;
-                    debugger;
+
                     const fullName = `${users[userIndex].profile.secondName} ${users[userIndex].profile.firstName} ${users[userIndex].profile.patronymic}`;
 
                     const unverifiedAppsCount = users[userIndex].applications.filter(
                         (application) => application.allow === null
                     ).length;
-
+                    appli.push(app.userId)
+                    debugger;
                     return (
                         <TableRow
                             key={index}
@@ -162,13 +169,13 @@ function PracticantsTable() {
     const getVerboseStatus = (status) => {
         switch (status) {
             case null:
-                return 'В процессе';
+                return 'В процессе выполнения тестового';
             case true:
-                return 'Прошёл';
+                return 'Прошёл на практику';
             case false:
-                return 'Не прошёл';
+                return 'Не прошёл на практику';
             default:
-                return 'В процессе';
+                return 'В процессе выполнения тестового';
         }
     };
 
@@ -318,6 +325,80 @@ function ProfileApplicationTable({applications}) {
                             date=''
                             status={getVerboseStatus(app?.isAllowed)}
                             directionId={app?.directionId || 'null'}
+                        />
+                    );
+            })}
+        </div>
+    );
+}
+
+function ProfileApplication2Table({applications}) {
+    const getVerboseStatus = (status) => {
+        switch (status) {
+            case null:
+                return 'В рассмотрении';
+            case true:
+                return 'Одобрено';
+            case false:
+                return 'Отклонено';
+            default:
+                return 'В рассмотрении';
+        }
+    };
+    debugger;
+    return (
+        <div className='table'>
+            <TableHeader type='profile_application'/>
+
+            {applications?.map((app) => {
+                debugger;
+                if (app?.title != null && app?.id != null)
+                    return (
+                        <TableRow
+                            key={app?.id || 'null'}
+                            type='profile_application2'
+                            directionName={app?.title}
+                            role={app?.role}
+                            date=''
+                            status={getVerboseStatus(app?.isAllowed)}
+                            directionId={app?.directionId || 'null'}
+                        />
+                    );
+            })}
+        </div>
+    );
+}
+
+function ProfileTestTable({tests, user}) {
+    const getVerboseStatus = (status) => {
+        switch (status) {
+            case null:
+                return 'В рассмотрении';
+            case true:
+                return 'Одобрено';
+            case false:
+                return 'Отклонено';
+            default:
+                return 'В рассмотрении';
+        }
+    };
+    debugger;
+    return (
+        <div className='table'>
+            <TableHeader type='profile_application'/>
+
+            {tests?.map((test) => {
+                debugger;
+                if (test?.title != null && test?.id != null && test.userId === user.id)
+                    return (
+                        <TableRow
+                            key={test?.id || 'null'}
+                            type='profile_test'
+                            directionName={test?.directionId}
+                            role={test?.path}
+                            date=''
+                            status={getVerboseStatus(test?.isAllowed)}
+                            directionId={test?.directionId || 'null'}
                         />
                     );
             })}

@@ -27,6 +27,7 @@
       <change beforePath="$PROJECT_DIR$/../USSC/USSC.sln" beforeDir="false" afterPath="$PROJECT_DIR$/../USSC/USSC.sln" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../USSC/USSC.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/../USSC/USSC.sln.DotSettings.user" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../USSC/USSC/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/../USSC/USSC/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../USSC/USSC/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../USSC/USSC/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../USSC/USSC/Attributes/EmailAttribute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../USSC/USSC/Attributes/EmailAttribute.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../USSC/USSC/Attributes/StringInputAttribute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../USSC/USSC/Attributes/StringInputAttribute.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../USSC/USSC/Attributes/Validation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../USSC/USSC/Attributes/Validation.cs" afterDir="false" />
@@ -184,10 +185,13 @@
       <change beforePath="$PROJECT_DIR$/src/components/DirectionCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DirectionCard.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/DirectionPreview.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DirectionPreview.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/FileField.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FileField.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Nav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Nav.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/RolesEdit.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RolesEdit.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Table.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Table.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/TableHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TableHeader.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/TableRow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TableRow.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TaskDescription.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TaskDescription.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/hooks/use-auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/use-auth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/hooks/use-before-render.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/use-before-render.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/hooks/use-directions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/use-directions.js" afterDir="false" />
@@ -202,6 +206,7 @@
       <change beforePath="$PROJECT_DIR$/src/pages/AdminSingleApplicationPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdminSingleApplicationPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/ApplicationsPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ApplicationsPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/DirectionsPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/DirectionsPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/TaskPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TaskPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/slices/allApplicationsSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/slices/allApplicationsSlice.js" afterDir="false" />
@@ -283,6 +288,10 @@
       <workItem from="1671555461508" duration="7833000" />
       <workItem from="1671615071735" duration="70313000" />
       <workItem from="1671704605061" duration="4463000" />
+      <workItem from="1671712265536" duration="1824000" />
+      <workItem from="1671913438199" duration="1988000" />
+      <workItem from="1672004901746" duration="2168000" />
+      <workItem from="1672036869591" duration="22891000" />
     </task>
     <servers />
   </component>

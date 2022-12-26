@@ -26,6 +26,7 @@ function Tsk(data) {
     const users = useSelector((state) => state.allUsers.users);
     const applications = useSelector((state) => state.applications.applications);
     const practices = useSelector((state) => state.directions.directions);
+    const [file, setFile] = React.useState();
 
     useEffect(() => {
         dispatch(getAllUsers());
@@ -34,20 +35,30 @@ function Tsk(data) {
         dispatch(getAllTests());
     }, []);
 
-    const [file, setFile] = React.useState();
+    if(!practices) return;
+    const practiceIndex = practices.findIndex((practice) => {
+        return practice.roles.some((role) => { return data.task === role.id});
+    });
+    if (practiceIndex === -1) return;
+    const roleIndex = practices[practiceIndex].roles.findIndex((role) => {
+        return data.task===role.id;
+    });
+
+
     const onClick = () => {debugger;dispatch(uploadTest({userId:data.user, directionId:data.task, file:file}));}
     debugger;
     return (
         <div>
             <div className='task'>
                 <GoBackButton style={{ marginBottom: '43px' }} />
-                <TaskDescription text={123} />
+                <TaskDescription text={practices[practiceIndex].roles[roleIndex].directions} />
+                <a href={"https://localhost:7296/testcase/download?directionId="+data.task}><div className="download">Скачать тестовое задание</div></a>
             </div>
             <div className='task_submission'>
                 {/*<p className='info_text' style={{ marginBottom: '43px' }}>*/}
                 {/*    Срок сдачи:...*/}
                 {/*</p>*/}
-                <FileField title='Прикрепить ответ на задание' set={setFile} />
+                <FileField title='Прикрепить ответ на задание' type={"0"} set={setFile} />
                 <p className='info_text' style={{ marginTop: '15px' }}>
                     Добавить файл в формате .zip
                 </p>

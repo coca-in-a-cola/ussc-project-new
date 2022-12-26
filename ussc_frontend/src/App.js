@@ -20,8 +20,10 @@ import AdminDirectionsPage from "./pages/AdminDirectionsPage";
 import AdminTestCasesPage from "./pages/AdminTestCasesPage";
 import AdminSingleTestPage from "./pages/AdminSingleTestPage";
 import AdminPracticantsPage from "./pages/AdminPracticantsPage";
+import AdminSinglePracticantPage from "./pages/AdminSinglePracticantPage";
 
 function App() {
+
     return (
         <Router>
             <Routes>
@@ -33,11 +35,18 @@ function App() {
 
 
                 <Route
+                    path='/home'
+                    element={
+                        <ProfileLayout/>
+                    }
+                >
+                    <Route index element={<HomePage/>}/>
+                </Route>
+
+                <Route
                     path='/profile'
                     element={
-                        <RequireAuth>
-                            <ProfileLayout/>
-                        </RequireAuth>
+                        <ProfileLayout/>
                     }
                 >
                     <Route index element={<ProfilePage/>}/>
@@ -95,6 +104,11 @@ function App() {
                         element={<RequireAdmin><AdminPracticantsPage/></RequireAdmin>}
                     />
 
+                    <Route
+                        path='practicant/:userId'
+                        element={<RequireAdmin><AdminSinglePracticantPage/></RequireAdmin>}
+                    />
+
 
                     <Route
                         path='application/:userId'
@@ -113,7 +127,7 @@ function App() {
 
                     <Route path='create/'>
                         <Route path='direction/' element={<RequireAdmin><AdminAddingDirectionPage/></RequireAdmin>}/>
-                        <Route path='testcase/' element={<RequireAdmin><AdminAddingTestCasePage/></RequireAdmin>}/>
+                        <Route path='testcase/:testId' element={<RequireAdmin><AdminAddingTestCasePage/></RequireAdmin>}/>
                     </Route>
                 </Route>
             </Routes>

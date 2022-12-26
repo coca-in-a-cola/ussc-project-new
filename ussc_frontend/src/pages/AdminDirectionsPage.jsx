@@ -2,6 +2,7 @@ import React from 'react';
 import FillProfileRequest from '../components/FillProfileRequest';
 import { useProfile } from '../hooks/use-profile';
 import DirectionsGrid from '../components/DirectionsGrid';
+import Button from '../components/Button'
 
 const DirectionsPage = () => {
   const [_, isFilledProfile] = useProfile();
@@ -17,6 +18,7 @@ const DirectionsPage = () => {
         <div className='content_section'>
           <h2 className='section_heading'>Направления подготовки</h2>
           <DirectionsGrid />
+            <label> <a href={"http://localhost:3000/admin/create/direction"}><Button>Добавить направление</Button></a></label>
         </div>
       </div>
     </div>

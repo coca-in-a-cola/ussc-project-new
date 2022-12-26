@@ -74,7 +74,7 @@ function Role({ name, id, update, onRemove, onAddTestCase, inputKey }) {
           <img src={crossIcon} alt='' />
         </button>
       </div>
-      <a href=''>Добавить тестовое</a>
+      {/*<a href=''>Добавить тестовое</a>*/}
     </div>
   );
 }

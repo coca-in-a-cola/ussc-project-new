@@ -27,12 +27,12 @@ const HomePage = () => {
     (state) => state.popups.passRecovery
   );
 
-  if (isAuth) return <Navigate to='/directions' />;
+  // if (isAuth) return <Navigate to='/directions' />;
 
   const toggleSignInActive = () => dispatch(togglePopup('signIn'));
   const toggleSignUpActive = () => dispatch(togglePopup('signUp'));
   const togglePassRecoveryActive = () => dispatch(togglePopup('passRecovery'));
-
+debugger;
   return (
     <>
       <div className='main'>

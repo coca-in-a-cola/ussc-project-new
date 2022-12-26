@@ -500,6 +500,7 @@ input {
   display: grid;
   grid-template-columns: repeat(3,1fr);
   gap: 25px;
+  margin-bottom: 10px;
 }
 
 .direction_image {
@@ -522,6 +523,11 @@ input {
 .footer {
   height: 250px;
   background-color: #e7e7e8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 16px;
 }
 
 .taskpage_wrapper {
@@ -813,6 +819,14 @@ input {
       }
     }
   }
+
+  .dis {
+    border: red 3px outset;
+  }
+
+  .cool {
+    border: forestgreen 3px outset;
+  }
 }
 
 .content_wrapper {
@@ -1055,6 +1069,74 @@ input {
 
       }
 
+      .profile_tests {
+        h3 {
+          font-style: normal;
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 22px;
+          margin-bottom: 45px;
+        }
+
+        .table {
+          display: grid;
+          grid-auto-rows: 40px;
+          position: relative;
+          margin-bottom: 67px;
+
+          .row {
+            display: grid;
+            grid-auto-rows: 40px;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            border-bottom: 2px solid $gray3;
+
+            &:hover {
+              border-bottom: 2px solid $orange1;
+            }
+
+            span {
+              display: flex;
+              align-items: center;
+              padding: 0 10px;
+              white-space: nowrap;
+            }
+          }
+
+          .select {
+            border: 2px $orange1 solid;;
+          }
+
+          a {
+            color: $black;
+          }
+
+          .headers {
+            &:hover {
+              border-bottom: 2px solid $gray3;
+            }
+
+            &:active {
+              border: none;
+              border-bottom: 2px solid $gray3;
+            }
+
+            span {
+              font-style: normal;
+              font-weight: 400;
+              font-size: 20px;
+              line-height: 28px;
+
+              display: flex;
+              align-items: center;
+              padding: 0 8px;
+
+              vertical-align: middle;
+            }
+          }
+
+        }
+      }
+
       .profile_requests {
         h3 {
           font-style: normal;
@@ -1085,6 +1167,12 @@ input {
               align-items: center;
               padding: 0 10px;
               white-space: nowrap;
+            }
+          }
+
+          .apppp {
+            &:hover {
+              border-bottom: 2px solid $gray3;
             }
           }
 

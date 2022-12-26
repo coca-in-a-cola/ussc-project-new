@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import DIRECTIONS_API, {CREATE_DIRECTION_URL} from '../../api/directionsAPI';
+import DIRECTIONS_API from '../../api/directionsAPI';
 import ALL_TESTS_API from "../../api/testCaseAPI";
 
 const initialState = {
@@ -36,12 +36,41 @@ export const getDirections = createAsyncThunk(
   }
 );
 
+export const addFileDirections = createAsyncThunk(
+    'directions/addFileDirection',
+    async function ({direction, file}, { rejectWithValue, dispatch }) {
+      try {
+        const accessToken = 'Bearer ' + localStorage.getItem('accessToken');
+        const formData = new FormData();
+        formData.append('file', file);
+        debugger;
+        let response = await fetch(DIRECTIONS_API.ADD_FILE_DIRECTION_URL+"?directionId="+direction, {
+          method: 'put',
+          body: formData,
+          headers: {
+            Authorization: accessToken,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`${response.status}`);
+        }
+
+        response = await response.json();
+        debugger;
+        // dispatch(setDirections(response));
+      } catch (error) {
+        return rejectWithValue(error.message);
+      }
+    }
+);
+
 export const createDirections = createAsyncThunk(
     'directions/createDirection',
     async function ({descriptions, name, roles}, { rejectWithValue, dispatch }) {
       try {
         const accessToken = 'Bearer ' + localStorage.getItem('accessToken');
-        const directionsss = roles.map((el) => {return {"directions": el.value, path:"Test"}});
+        const directionsss = roles.map((el) => {return {"directions": el.value, path:Date.now().toString()+el.value}});
         debugger;
         const direction = {
           "descriptions": descriptions,
@@ -65,8 +94,10 @@ export const createDirections = createAsyncThunk(
           throw new Error(`${response.status}`);
         }
 
+
         response = await response.json();
         debugger;
+        window.location.assign('http://localhost:3000/admin/create/testcase/'+response);
         // dispatch(setDirections(response));
       } catch (error) {
         return rejectWithValue(error.message);
@@ -147,6 +178,9 @@ const directionSlice = createSlice({
     [createDirections.pending]: () => {},
     [createDirections.fulfilled]: () => {},
     [createDirections.rejected]: () => {},
+    [addFileDirections.pending]: () => {},
+    [addFileDirections.fulfilled]: () => {},
+    [addFileDirections.rejected]: () => {},
   },
 });
 

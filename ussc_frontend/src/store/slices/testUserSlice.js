@@ -20,7 +20,7 @@ export const uploadTest = createAsyncThunk(
           },
         });
 
-        window.location.assign('http://localhost:3000/applications');
+        window.location.assign('/applications');
 
 
         dispatch(getApplicationsByUserId(userId));

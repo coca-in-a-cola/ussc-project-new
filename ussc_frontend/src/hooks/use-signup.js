@@ -1,6 +1,6 @@
 export function useSignUp() {
   return async (user) => {
-    let response = await fetch('https://localhost:7296/user/register', {
+    let response = await fetch('/user/register', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

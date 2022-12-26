@@ -41,7 +41,7 @@ export default function AdminSingleTestPage() {
         <div className='test_wrapper'>
           <div className='test_info'>
             <div className='header'>Тестовое задание</div>
-            <a href={"https://localhost:7296/testcase/getUserSolution?userId="+userId+"&directionId="+testId}><div className="download">Скачать файл</div></a>
+            <a href={"/testcase/getUserSolution?userId="+userId+"&directionId="+testId}><div className="download">Скачать файл</div></a>
             <ASTP user={userId} test={testId}/>
           {/*  <div className='profile_person'>*/}
           {/*    <div className='profile_photo'>*/}

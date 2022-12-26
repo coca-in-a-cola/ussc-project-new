@@ -30,7 +30,7 @@ export const sendCheckApplication = createAsyncThunk(
         dispatch(getApplicationsByUserId(userId));
         debugger;
         dispatch(getAllApplications());
-        window.location.assign('http://localhost:3000/admin/applications');
+        window.location.assign('/admin/applications');
       } catch (error) {
         return rejectWithValue(error.message);
       }

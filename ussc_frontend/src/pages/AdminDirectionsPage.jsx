@@ -18,7 +18,7 @@ const DirectionsPage = () => {
         <div className='content_section'>
           <h2 className='section_heading'>Направления подготовки</h2>
           <DirectionsGrid />
-            <label> <a href={"http://localhost:3000/admin/create/direction"}><Button>Добавить направление</Button></a></label>
+            <label> <a href={"/admin/create/direction"}><Button>Добавить направление</Button></a></label>
         </div>
       </div>
     </div>

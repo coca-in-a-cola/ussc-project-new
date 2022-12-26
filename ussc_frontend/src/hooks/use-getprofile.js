@@ -5,7 +5,7 @@ export function useGetProfile() {
     const bearer = 'Bearer ' + localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
     let response = await fetch(
-      `https://localhost:7296/profile/getInfo?id=${userId}`,
+      `/profile/getInfo?id=${userId}`,
       {
         method: 'get',
         headers: {

@@ -2,15 +2,18 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import APPLICATIONS_API from '../../api/applicationsAPI';
 import {getApplicationsByUserId} from "./applicationSlice";
 import {getAllApplications} from "./allApplicationsSlice";
+import {getAllUsers} from "./allUsersSlice";
+import { Navigate } from "react-router-dom";
 
 export const sendCheckApplication = createAsyncThunk(
     'applications/approveApplication',
-    async ({allow, userId}, { rejectWithValue, dispatch }) => {
+    async ({allow, userId, directionId}, { rejectWithValue, dispatch }) => {
       try {
         const accessToken = 'Bearer ' + localStorage.getItem('accessToken');
 
         const application = {
-          directionId: localStorage.getItem('curCheckApp'),
+          // directionId: localStorage.getItem('curCheckApp'),
+          directionId: directionId,
           userId: userId,
           allow: allow,
         };
@@ -25,13 +28,21 @@ export const sendCheckApplication = createAsyncThunk(
         });
 
         response = await response.json();
-        alert(response.success? (allow ? "Успешно одобрено" : "Успешно отклонена") : "Ошибка");
+
+        if (!response.success) {
+          throw new Error("error");
+        }
+        //alert(response.success? (allow ? "Успешно одобрено" : "Успешно отклонена") : "Ошибка");
 
         dispatch(getApplicationsByUserId(userId));
         debugger;
         dispatch(getAllApplications());
-        window.location.assign('/admin/applications');
+        dispatch(getAllUsers());
+        // return (<Navigate to="/admin/application" replace={true} />)
+        // window.location.assign('http://localhost:3000/admin/applications');
       } catch (error) {
+        debugger
+        // throw error;
         return rejectWithValue(error.message);
       }
     }
@@ -40,20 +51,19 @@ export const sendCheckApplication = createAsyncThunk(
 const checkAppSlice = createSlice({
   name: 'checkApp',
   initialState: {
-    checkApp: {
-      currentCheckId: null,
-    },
+    currentCheckId: null,
   },
   reducers: {
     checkApp(state, action) {
-      localStorage.setItem('curCheckApp', action.payload);
-      window.location.reload();
+      state.currentCheckId = action.payload;
+      //localStorage.setItem('curCheckApp', action.payload);
+      //window.location.reload();
     },
   },
   extraReducers: {
     [sendCheckApplication.pending]: () => {},
     [sendCheckApplication.fulfilled]: () => {},
-    [sendCheckApplication.rejected]: () => {},
+    [sendCheckApplication.rejected]: (state, action) => {throw new Error("error");},
   },
 });
 

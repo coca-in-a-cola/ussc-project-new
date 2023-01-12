@@ -1,5 +1,6 @@
 import Button from './Button';
 import { useDispatch } from 'react-redux';
+import { useAuth } from '../hooks/use-auth';
 import {
   toggleApplicationForm,
   toggleDirection,
@@ -7,6 +8,7 @@ import {
 
 export default function DirectionCard({ title, description, direction }) {
   const dispatch = useDispatch();
+  const user = useAuth();
 
   const toggleDir = () => dispatch(toggleDirection({ id: direction.id }));
   const toggleAppForm = () =>
@@ -44,14 +46,16 @@ export default function DirectionCard({ title, description, direction }) {
                 )}
               </div>
             </div>
-            <Button
-              onClick={() => {
-                toggleDir();
-                toggleAppForm();
-              }}
-            >
-              Оставить заявку
-            </Button>
+            {
+              (!user.isAdmin) ? <Button
+                  onClick={() => {
+                    toggleDir();
+                    toggleAppForm();
+                  }}
+              >
+                Оставить заявку
+              </Button> : <></>
+            }
           </div>
         </div>
       </div>

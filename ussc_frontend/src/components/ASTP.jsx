@@ -1,5 +1,3 @@
-import TableRow from './TableRow';
-import TableHeader from './TableHeader';
 import {getAllApplications} from '../store/slices/allApplicationsSlice';
 import {useDispatch} from 'react-redux';
 import {useEffect, useState} from 'react';
@@ -7,16 +5,20 @@ import {useSelector} from 'react-redux';
 import {getAllUsers} from '../store/slices/allUsersSlice';
 import {getAllTests} from "../store/slices/allTestsSlice";
 import {getDirections} from "../store/slices/directionSlice";
-import Table from "./Table";
-import {sendCheckApplication} from "../store/slices/applicationCheckSlice";
 import {sendCheckTest} from "../store/slices/testCheckSlice";
 import {useForm} from "react-hook-form";
+
+import { useNavigate } from 'react-router-dom';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function ASTP({type, users, applications, tests, directions, practices, user, test}) {
     return <AS user={user} test={test}/>;
 }
 
 function AS(data) {
+    let navigate = useNavigate();
     const {register, handleSubmit, setValue, control} = useForm({
         defaultValues: {
             discriptions: "",
@@ -36,6 +38,7 @@ function AS(data) {
     // const userIndex = users.findIndex((user) => {
     //     return app.userId === user.id;
     // });
+    const tests = useSelector((state) => state.allTests.allTests);
     const practices = useSelector((state) => state.directions.directions);
 
     useEffect(() => {
@@ -44,12 +47,13 @@ function AS(data) {
         dispatch(getAllTests());
         dispatch(getDirections());
     }, []);
-    debugger;
+
     const onSubmit = (payload) => {
-        console.dir(payload);
-        console.log(checked);
-        debugger;
-        dispatch(sendCheckTest({allow: checked, userId: data.user, testId: data.test, description: payload.discriptions}))
+        toast.promise(dispatch(sendCheckTest({ allow: checked, userId: data.user, testId: data.test, description: payload.discriptions})), {
+            pending: 'Выполняю запрос',
+            success: 'Запрос успешно выполнен 👌',
+            error: 'Запрос отклонён 🤯'
+        }).then(dispatch(getAllTests())).then(() => navigate("/admin/testcases"))
     };
 
     const userIndex = users.findIndex((user) => {
@@ -103,10 +107,7 @@ function AS(data) {
 
                 <div className="buttons">
                     {/*<a href="#openModal">*/}
-                    <button type='submit' className="save" onClick={() => {
-                        debugger;
-                    }}>Отправить
-                    </button>
+                    <button type='submit' className="save">Отправить</button>
                     {/*</a>*/}
                 </div>
             </form>

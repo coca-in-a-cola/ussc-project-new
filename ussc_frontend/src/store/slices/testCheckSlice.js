@@ -1,7 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import APPLICATIONS_API from '../../api/applicationsAPI';
-import {getApplicationsByUserId} from "./applicationSlice";
-import {getAllApplications} from "./allApplicationsSlice";
+import {getAllTests} from "./allTestsSlice";
 import ALL_TESTS_API from "../../api/testCaseAPI";
 
 export const sendCheckTest = createAsyncThunk(
@@ -27,12 +25,9 @@ export const sendCheckTest = createAsyncThunk(
         });
 
         response = await response.json();
-        alert(response.success? "Успешно одобрено" : "Ошибка");
-
-        dispatch(getApplicationsByUserId(userId));
-        debugger;
-        dispatch(getAllApplications());
-        window.location.assign('/admin/testcases');
+        dispatch(getAllTests());
+        // dispatch(getApplicationsByUserId(userId));
+        // dispatch(getAllApplications());
       } catch (error) {
         return rejectWithValue(error.message);
       }
@@ -56,7 +51,7 @@ const checkTestSlice = createSlice({
   extraReducers: {
     [sendCheckTest.pending]: () => {},
     [sendCheckTest.fulfilled]: () => {},
-    [sendCheckTest.rejected]: () => {},
+    [sendCheckTest.rejected]: (state, action) => {throw new Error("error");},
   },
 });
 

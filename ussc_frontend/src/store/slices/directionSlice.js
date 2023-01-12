@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import DIRECTIONS_API from '../../api/directionsAPI';
-import ALL_TESTS_API from "../../api/testCaseAPI";
 
 const initialState = {
   directions: [],
@@ -68,6 +67,7 @@ export const addFileDirections = createAsyncThunk(
 export const createDirections = createAsyncThunk(
     'directions/createDirection',
     async function ({descriptions, name, roles}, { rejectWithValue, dispatch }) {
+
       try {
         const accessToken = 'Bearer ' + localStorage.getItem('accessToken');
         const directionsss = roles.map((el) => {return {"directions": el.value, path:Date.now().toString()+el.value}});
@@ -94,10 +94,12 @@ export const createDirections = createAsyncThunk(
           throw new Error(`${response.status}`);
         }
 
-
         response = await response.json();
         debugger;
-        window.location.assign('/admin/create/testcase/'+response);
+        console.log(response)
+        return response;
+
+        // window.location.assign('http://localhost:3000/admin/create/testcase/'+response);
         // dispatch(setDirections(response));
       } catch (error) {
         return rejectWithValue(error.message);
@@ -177,7 +179,7 @@ const directionSlice = createSlice({
     [getDirections.rejected]: () => {},
     [createDirections.pending]: () => {},
     [createDirections.fulfilled]: () => {},
-    [createDirections.rejected]: () => {},
+    [createDirections.rejected]: () => {throw new Error(500)},
     [addFileDirections.pending]: () => {},
     [addFileDirections.fulfilled]: () => {},
     [addFileDirections.rejected]: () => {},

@@ -4,7 +4,7 @@ export default function AdminPracticantsPage() {
   return (
     <div className='content_wrapper'>
       <div className='tests'>
-        <div className='header'>Список практикантов</div>
+        <div className='headere'>Список практикантов</div>
         <form className='search-form'>
           <input
             type='search'

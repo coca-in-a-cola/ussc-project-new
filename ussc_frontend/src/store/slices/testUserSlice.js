@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import APPLICATIONS_API from '../../api/applicationsAPI';
 import {getApplicationsByUserId} from "./applicationSlice";
 import {getAllApplications} from "./allApplicationsSlice";
 import ALL_TESTS_API from "../../api/testCaseAPI";
@@ -12,7 +11,7 @@ export const uploadTest = createAsyncThunk(
         const formData = new FormData();
         formData.append('file', file);
         debugger;
-        let response = await fetch(ALL_TESTS_API.UPLOAD_TEST_URL+"?userId="+userId+"&directionId="+directionId, {
+        await fetch(ALL_TESTS_API.UPLOAD_TEST_URL+"?userId="+userId+"&directionId="+directionId, {
           method: 'post',
           body: formData,
           headers: {
@@ -20,11 +19,7 @@ export const uploadTest = createAsyncThunk(
           },
         });
 
-        window.location.assign('/applications');
-
-
         dispatch(getApplicationsByUserId(userId));
-        debugger;
         dispatch(getAllApplications());
 
       } catch (error) {

@@ -144,14 +144,15 @@ function EducationRow({contentType, value}) {
     }
 }
 
-function ProfileApplicationRow({directionName, role, date, status, directionId}) {
+function ProfileApplicationRow({directionName, role, date, status, directionId, isSelect, setSelect}) {
     const checkAppAct = () => dispatch(checkApp(directionId));
-    const isSelectApp = () => (localStorage.getItem("curCheckApp") === directionId);
+    // const isSelectApp = () => (localStorage.getItem("curCheckApp") === directionId);
+
     const dispatch = useDispatch();
     debugger;
     return (
 
-        <div className={'row ' + (isSelectApp() ? "select" : "")} onClick={checkAppAct}>
+        <div className={'row ' + (isSelect ? "select" : "")} onClick={() => setSelect(directionId)}>
             <span>{directionName}</span>
             <span>{role}</span>
             <span>{date}</span>

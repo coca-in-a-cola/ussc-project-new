@@ -1,10 +1,13 @@
 import Table from '../components/Table';
+import {getAllTests} from "../store/slices/allTestsSlice";
+import {useEffect} from "react";
+import {useDispatch} from 'react-redux';
 
 export default function AdminTestCasesPage() {
   return (
     <div className='content_wrapper'>
       <div className='tests'>
-        <div className='header'>Тестовое задание</div>
+        <div className='headere'>Тестовое задание</div>
         <form className='search-form'>
           <input
             type='search'

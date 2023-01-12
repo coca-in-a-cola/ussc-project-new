@@ -16,12 +16,18 @@ import Button from "./Button";
 import GoBackButton from "./GoBackButton";
 import TaskDescription from "./TaskDescription";
 import {uploadTest} from "../store/slices/testUserSlice";
+import { useNavigate } from 'react-router-dom';
+import {HOST} from "../api/host"
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Task({type, task, users, user}) {
     return <Tsk task={task} user={user}/>;
 }
 
 function Tsk(data) {
+    let navigate = useNavigate();
     const dispatch = useDispatch();
     const users = useSelector((state) => state.allUsers.users);
     const applications = useSelector((state) => state.applications.applications);
@@ -45,14 +51,22 @@ function Tsk(data) {
     });
 
 
-    const onClick = () => {debugger;dispatch(uploadTest({userId:data.user, directionId:data.task, file:file}));}
-    debugger;
+    const onClick = () => {
+        debugger;
+        toast.promise(dispatch(uploadTest({userId:data.user, directionId:data.task, file:file})), {
+            pending: 'Выполняю запрос',
+            success: 'Запрос успешно выполнен 👌',
+            error: 'Запрос отклонён 🤯'
+        // });
+        }).then(() => navigate("/applications"));
+    }
+
     return (
         <div>
             <div className='task'>
                 <GoBackButton style={{ marginBottom: '43px' }} />
                 <TaskDescription text={practices[practiceIndex].roles[roleIndex].directions} />
-                <a href={"/testcase/download?directionId="+data.task}><div className="download">Скачать тестовое задание</div></a>
+                <a href={`${HOST}/testcase/download?directionId=`+data.task}><div className="download">Скачать тестовое задание</div></a>
             </div>
             <div className='task_submission'>
                 {/*<p className='info_text' style={{ marginBottom: '43px' }}>*/}

@@ -3,11 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 const popupSlice = createSlice({
   name: 'popup',
   initialState: {
-    popups: {
-      signIn: false,
-      signUp: false,
-      passRecovery: false,
-    },
+    signIn: false,
+    signUp: false,
+    passRecovery: false,
   },
   reducers: {
     togglePopup(state, action) {

@@ -3,6 +3,7 @@ import FillProfileRequest from '../components/FillProfileRequest';
 import { useProfile } from '../hooks/use-profile';
 import DirectionsGrid from '../components/DirectionsGrid';
 import Button from '../components/Button'
+import {Link} from "react-router-dom"
 
 const DirectionsPage = () => {
   const [_, isFilledProfile] = useProfile();
@@ -18,7 +19,7 @@ const DirectionsPage = () => {
         <div className='content_section'>
           <h2 className='section_heading'>Направления подготовки</h2>
           <DirectionsGrid />
-            <label> <a href={"/admin/create/direction"}><Button>Добавить направление</Button></a></label>
+            <label style={{margin:'20px'}}> <Link to={"/admin/create/direction"}><Button>Добавить направление</Button></Link></label>
         </div>
       </div>
     </div>

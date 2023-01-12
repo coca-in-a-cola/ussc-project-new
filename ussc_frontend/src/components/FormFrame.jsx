@@ -1,5 +1,5 @@
 import React from 'react';
-import NavLogo from './NavLogo';
+import NavLogo from './Header/NavLogo';
 
 const FormFrame = ({ onSubmit, children }) => {
   return (

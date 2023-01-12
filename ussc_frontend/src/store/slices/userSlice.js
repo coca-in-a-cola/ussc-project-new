@@ -1,10 +1,40 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
+import { useNavigate } from "react-router-dom";
 import USER_API from '../../api/userAPI';
+import {getProfile} from "./profileSlice";
+import {togglePopup} from "./popupSlice";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const loginNotify = () => toast.success('🦄 Вы успешно авторизовались!', {
+    position: "bottom-right",
+    autoClose: 3000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+});
+
+const registrationNotify = () => toast.success('🦄 Вы успешно зарегестрировались в системе!', {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+    });
 
 export const signInUser = createAsyncThunk(
     'user/signIn',
     async function (user, {rejectWithValue, dispatch}) {
+        // let navigate = useNavigate();
         try {
+
             let response = await fetch(USER_API.SIGN_IN_USER_URL, {
                 method: 'post',
                 headers: {
@@ -25,6 +55,11 @@ export const signInUser = createAsyncThunk(
             response = await response.json();
             debugger;
             dispatch(setUser(response));
+            dispatch(getProfile());
+            dispatch(togglePopup("signIn"));
+            loginNotify();
+
+            // navigate(`/profile`);
 
             return response;
         } catch (error) {
@@ -56,6 +91,8 @@ export const signUpUser = createAsyncThunk(
             response = await response.json();
 
             dispatch(signInUser(user));
+            dispatch(togglePopup("signUp"));
+            registrationNotify();
 
             return response;
         } catch (error) {

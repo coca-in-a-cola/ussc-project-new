@@ -2,13 +2,13 @@ import TableRow from './TableRow';
 import TableHeader from './TableHeader';
 import {getAllApplications} from '../store/slices/allApplicationsSlice';
 import {useDispatch} from 'react-redux';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 import {getAllUsers} from '../store/slices/allUsersSlice';
 import {getAllTests} from "../store/slices/allTestsSlice";
 import {getDirections} from "../store/slices/directionSlice";
 
-export default function Table({type, user, applications, practice, direction, tests}) {
+export default function Table({type, user, applications, practice, direction, tests, selectRow, setSelectRow}) {
     switch (type) {
         case 'applications':
             return <ApplicationsTable/>;
@@ -25,7 +25,7 @@ export default function Table({type, user, applications, practice, direction, te
         case 'education':
             return <EducationTable user={user}/>;
         case 'profile_application':
-            return <ProfileApplicationTable applications={applications}/>;
+            return <ProfileApplicationTable applications={applications} selectRow={selectRow} setSelectRow={setSelectRow}/>;
         case 'profile_application2':
             return <ProfileApplication2Table applications={applications}/>;
         case 'profile_test':
@@ -46,6 +46,7 @@ function ApplicationsTable() {
     useEffect(() => {
         dispatch(getAllUsers());
         dispatch(getAllApplications());
+        dispatch(getAllTests());
     }, []);
     let appli = [];
 
@@ -87,27 +88,27 @@ function ApplicationsTable() {
 }
 
 function TestsTable() {
-    const getVerboseStatus = (status) => {
-        switch (status) {
-            case null:
-                return 'Не выполнено';
-            case true:
-                return 'Одобрено';
-            case false:
-                return 'Не проверено';
-            default:
-                return 'В рассмотрении';
-        }
-    };
-
     const dispatch = useDispatch();
+
+    // const getVerboseStatus = (status) => {
+    //     switch (status) {
+    //         case null:
+    //             return 'Не выполнено';
+    //         case true:
+    //             return 'Одобрено';
+    //         case false:
+    //             return 'Не проверено';
+    //         default:
+    //             return 'В рассмотрении';
+    //     }
+    // };
 
     const tests = useSelector(
         (state) => state.allTests.allTests
     );
     const users = useSelector((state) => state.allUsers.users);
     const practices = useSelector((state) => state.directions.directions);
-debugger;
+    debugger;
     useEffect(() => {
         dispatch(getAllUsers());
         dispatch(getAllTests());
@@ -275,7 +276,7 @@ function EducationTable({user}) {
                 contentType='university'
                 value={user?.profile?.university}
             />
-            <TableRow type='education' contentType='faculty' value='ИРИТ-РТФ'/>
+            <TableRow type='education' contentType='faculty' value={user?.profile?.faculty}/>
             <TableRow
                 type='education'
                 contentType='speciality'
@@ -295,7 +296,10 @@ function EducationTable({user}) {
     );
 }
 
-function ProfileApplicationTable({applications}) {
+function ProfileApplicationTable({applications, selectRow, setSelectRow }) {
+    useEffect(() => {
+        getAllUsers()
+    }, applications)
     const getVerboseStatus = (status) => {
         switch (status) {
             case null:
@@ -313,7 +317,7 @@ function ProfileApplicationTable({applications}) {
         <div className='table'>
             <TableHeader type='profile_application'/>
 
-            {applications?.map((app) => {
+            {applications?.map((app, index) => {
                 debugger;
                 if (app?.title != null && app?.id != null)
                     return (
@@ -325,6 +329,8 @@ function ProfileApplicationTable({applications}) {
                             date=''
                             status={getVerboseStatus(app?.isAllowed)}
                             directionId={app?.directionId || 'null'}
+                            isSelect={app?.directionId===selectRow}
+                            setSelect={setSelectRow}
                         />
                     );
             })}

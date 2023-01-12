@@ -1,4 +1,6 @@
 import Button from './Button';
+import {Link} from "react-router-dom";
+
 
 export default function Application({ directionName, applicationId, role, requestAllow, tests, testIndex }) {
   let text = "";
@@ -22,7 +24,7 @@ export default function Application({ directionName, applicationId, role, reques
         if(testIndex === -1)
         {
           text = 'Отлично! Твоя заявка одобрена, приступай к выполнению тестового. ';
-          button = () => {return (<a href={"./task/"+applicationId.userId+"/"+applicationId.directionId}><Button >Выполнить тестовое</Button></a>)}
+          button = () => {return (<Link to={"/task/"+applicationId.userId+"/"+applicationId.directionId}><Button >Выполнить тестовое</Button></Link>)}
         }
         else
           if (tests[testIndex].path != null)

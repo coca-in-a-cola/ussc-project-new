@@ -1,22 +1,31 @@
 import GoBackButton from '../components/GoBackButton';
 import { Navigate, useParams } from 'react-router-dom';
 import Table from '../components/Table';
-import { useEffect } from 'react';
+import {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsers } from '../store/slices/allUsersSlice';
 import { getDirections } from '../store/slices/directionSlice';
 import {sendCheckApplication} from "../store/slices/applicationCheckSlice";
 import {getApplicationsByUserId} from "../store/slices/applicationSlice";
+import { useNavigate } from 'react-router-dom';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AdminSingleApplicationPage() {
+  let navigate = useNavigate();
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getAllUsers());
     dispatch(getDirections());
   }, []);
 
+  const [selectRow, setSelectRow] = useState(0);
+  debugger
   const { userId } = useParams();
   const users = useSelector((state) => state.allUsers.users);
+
   const directions = useSelector((state) => state.directions.directions);
   const userIndex = users.findIndex((usr) => usr.id === userId);
 
@@ -86,7 +95,7 @@ export default function AdminSingleApplicationPage() {
 
           <div className='profile_requests'>
             <h3>Заявки</h3>
-            <Table type='profile_application' applications={applications} />
+            <Table type='profile_application' applications={applications} selectRow={selectRow} setSelectRow={setSelectRow} />
 
             <div className='buttons'>
               <a href='#openModal1'>
@@ -109,7 +118,13 @@ export default function AdminSingleApplicationPage() {
                         <h3>Одобрить заявку?</h3>
                         <div className='buttons'>
                           {/*<a href='#close1' title='Close' className='close'>*/}
-                            <button onClick={() => {debugger; dispatch(sendCheckApplication({ allow: true, userId: user.id }))}}>Подтвердить</button>
+                            <button onClick={() => {
+                              toast.promise(dispatch(sendCheckApplication({ allow: true, userId: user.id, directionId: selectRow})), {
+                                pending: 'Выполняю запрос',
+                                success: 'Запрос успешно выполнен 👌',
+                                error: 'Запрос отклонён 🤯'
+                              }).then(() => navigate("/admin/applications"))
+                            }}>Подтвердить</button>
                           {/*</a>*/}
                           <a href='#close1' title='Close' className='close'>
                             <button className='dismiss'>Отменить</button>
@@ -143,7 +158,13 @@ export default function AdminSingleApplicationPage() {
                         ></textarea>
                         <div className='buttons'>
                           {/*<a href='#close2' title='Close' className='close2'>*/}
-                            <button className='dismiss' onClick={() => {debugger; dispatch(sendCheckApplication({ allow: false, userId: user.id }))}}>Отклонить</button>
+                            <button className='dismiss' onClick={() => {
+                              toast.promise(dispatch(sendCheckApplication({ allow: false, userId: user.id, directionId: selectRow})), {
+                                pending: 'Выполняю запрос',
+                                success: 'Запрос успешно выполнен 👌',
+                                error: 'Запрос отклонён 🤯'
+                              }).then(() => navigate("/admin/applications"))
+                            }}>Отклонить</button>
                           {/*</a>*/}
                         </div>
                       </div>

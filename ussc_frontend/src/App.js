@@ -2,6 +2,7 @@ import React from 'react';
 import './App.scss';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
 import NotFoundPage from './pages/NotFoundPage';
 import ProfilePage from './pages/ProfilePage';
 import HomeLayout from './components/HomeLayout';
@@ -29,6 +30,7 @@ function App() {
             <Routes>
                 <Route path='/' element={<HomeLayout/>}>
                     <Route index element={<HomePage/>}/>
+                    <Route path='login' element={<LoginPage/>}/>
                     <Route path='cardpop' element={<TestCaseSentOK/>}/>
                     <Route path='*' element={<NotFoundPage/>}/>
                 </Route>
@@ -55,9 +57,9 @@ function App() {
                 <Route
                     path='/task/:userId/:taskId'
                     element={
-                        // <RequireAuth>
+                        <RequireAuth>
                             <ProfileLayout/>
-                        // </RequireAuth>
+                        </RequireAuth>
                     }
                 >
                     <Route index element={<TaskPage/>}/>

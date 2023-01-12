@@ -17,7 +17,7 @@ const ApplicationsPage = () => {
         dispatch(getAllUsers());
         dispatch(getAllTests());
         dispatch(getDirections());
-    });
+    }, []);
 
     const tests = useSelector(
         (state) => state.allTests.allTests

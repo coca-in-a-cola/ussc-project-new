@@ -13,8 +13,13 @@ import {getAllTests} from "../store/slices/allTestsSlice";
 import {getDirections, addFileDirections} from "../store/slices/directionSlice";
 import {getAllApplications} from '../store/slices/allApplicationsSlice';
 import FileField from '../components/FileField';
+import { useNavigate } from 'react-router-dom';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AdminAddingTestCasePage() {
+    let navigate = useNavigate();
     const { testId } = useParams();
     const dispatch = useDispatch();
     const users = useSelector((state) => state.allUsers.users);
@@ -29,7 +34,18 @@ export default function AdminAddingTestCasePage() {
     }, []);
 
     const [file, setFile] = React.useState();
-    const onClick = () => {debugger;files.map((file, index) => dispatch(addFileDirections({direction:practices[practiceIndex].roles[index].id, file:file})) );}
+    const onClick = () => {
+        debugger;
+        files.map((file, index) =>
+        {
+            toast.promise(dispatch(addFileDirections({direction:practices[practiceIndex].roles[index].id, file:file})), {
+                pending: 'Загрузка файла',
+                success: 'Файл успешно загружен 👌',
+                error: 'Файл не загружен 🤯'
+                // });
+            }).then(() => navigate('/admin/directions/'))}
+        );
+    }
     const call = (direction) => {return onClick(direction)}
     const practiceIndex = practices.findIndex((practice) => {
         return practice.id === testId ;
@@ -62,7 +78,7 @@ export default function AdminAddingTestCasePage() {
                         })) : (<div></div>)
                 }
                 </div>
-                <Button style={{ marginTop: '40px' }} onClick={onClick}>Отправить</Button>)
+                <Button style={{ marginTop: '40px' }} onClick={onClick}>Отправить</Button>
                 {/*<Button onClick={call(role.directions)}>Добавить тестовое</Button>*/}
             </div>
         </div>

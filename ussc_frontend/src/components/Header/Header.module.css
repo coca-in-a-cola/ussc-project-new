@@ -1,0 +1,86 @@
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: white;
+    border-bottom: 1px solid rgba(86, 90, 90, 0.3);
+    height: 85px;
+    white-space: nowrap;
+}
+
+.header_wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 1480px;
+    margin: auto;
+    height: 100%;
+}
+
+.nav_logo {
+    width: 332px;
+}
+
+.nav_logo a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 17px;
+    height: 85px;
+    cursor: default;
+}
+.nav_logo .logo_image {
+    align-items: center;
+}
+.nav_logo .logo_cross {
+    height: 85px;
+    width: 19px;
+}
+.nav_logo .udv_logo {
+    width: 125px;
+    padding-right: 20px;
+}
+
+.nav {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 80px;
+    align-items: center;
+
+}
+
+.nav:last-child {
+    padding-right: 20px;
+}
+
+.nav_item {
+    text-decoration: none;
+    color: #000;
+    font-weight: 700;
+    font-size: 14px;
+    font-style: normal;
+    line-height: 19px;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    font-family: "Montserrat", serif;
+    text-transform: uppercase;
+    transition: color 200ms;
+}
+
+.nav_item:hover {
+    color: #f59d0e;
+    transition: color 200ms;
+}
+
+.sep {
+    width: 0;
+    height: 20px;
+    border: 1px solid black;
+}
+
+.nav_auth {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}

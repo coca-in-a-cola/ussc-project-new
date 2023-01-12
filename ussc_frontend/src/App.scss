@@ -22,6 +22,17 @@ $white: #e7e7e8;
   src: url('./fonts/Oswald-VariableFont_wght.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: 700;
+  src: url('./fonts/Montserrat-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: 400;
+  src: url('./fonts/Montserrat-Regular.ttf') format('truetype');
+}
+
 @media screen and (max-width: 1600px) {
   body {
     zoom: 80%;
@@ -403,7 +414,7 @@ input {
   align-items: center;
   width: 1480px;
   gap: 265px;
-  margin: 229px auto 173px auto;
+  margin: 173px auto 173px auto;
 }
 
 .offer {
@@ -1778,7 +1789,7 @@ input {
       }
     }
 
-    .header {
+    .headere {
       color: $black;
       font-style: normal;
       font-weight: 400;

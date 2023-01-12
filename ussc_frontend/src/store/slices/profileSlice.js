@@ -7,6 +7,7 @@ export const getProfile = createAsyncThunk(
   'profile/getProfile',
   async function (_, { rejectWithValue, dispatch }) {
     try {
+      debugger
       const accessToken = 'Bearer ' + localStorage.getItem('accessToken');
       const userId = localStorage.getItem('userId');
 

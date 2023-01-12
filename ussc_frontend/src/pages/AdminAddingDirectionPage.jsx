@@ -7,8 +7,13 @@ import {sendCheckTest} from "../store/slices/testCheckSlice";
 import {useDispatch} from "react-redux";
 import {paste} from "@testing-library/user-event/dist/paste";
 import {createDirections} from "../store/slices/directionSlice";
+import { useNavigate } from 'react-router-dom';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AdminAddingDirectionPage() {
+  let navigate = useNavigate();
   const { register, handleSubmit, setValue, control } = useForm({
     defaultValues: {
       direction_name: '',
@@ -19,8 +24,16 @@ export default function AdminAddingDirectionPage() {
   const dispatch = useDispatch();
 
   const onSubmit = (payload) => {
-    console.dir(payload);
-    dispatch(createDirections({descriptions: payload.direction_description, name: payload.direction_name, roles:payload.roles}))
+
+    toast.promise(dispatch(createDirections({descriptions: payload.direction_description, name: payload.direction_name, roles:payload.roles})), {
+      pending: 'Выполняю запрос',
+      success: 'Запрос успешно выполнен 👌',
+      error: 'Запрос отклонён 🤯'
+      // });
+    }).then(result => navigate('/admin/create/testcase/'+result.payload));
+    // console.dir(payload);
+    // dispatch(createDirections({descriptions: payload.direction_description, name: payload.direction_name, roles:payload.roles}))
+    //     .then(result => navigate('/admin/create/testcase/'+result.payload));
   };
 
   return (
@@ -64,7 +77,7 @@ export default function AdminAddingDirectionPage() {
               ></textarea>
             </div>
 
-            <Button type='submit'>Добавить тестовое</Button>
+            <Button type='submit'>Добавить направление</Button>
           </div>
         </div>
       </div>

@@ -1,0 +1,52 @@
+.footer {
+    height: 155px;
+    background-color: #2F3338;
+    display: flex;
+    /*justify-content: center;*/
+    align-items: center;
+    text-align: center;
+    font-size: 13px;
+    flex-direction: column;
+    color: #ffffff;
+    font-family: "Montserrat", serif;
+    font-weight: 400;
+}
+
+/*.footerContainer {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    gap: 45px;*/
+/*}*/
+
+.footerContacts {
+    display: flex;
+    flex-direction: row;
+    gap: 78px;
+    margin: 45px;
+}
+
+.footerPhone {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.footerPhoneText {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    color: #ffffff;
+    white-space: nowrap;
+    font-family: "Montserrat", serif;
+    font-weight: 400;
+}
+
+.footerPhoneText a{
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.footerContactsHeader {
+    font-size: 14px;
+    color: #d9d9d9;
+}

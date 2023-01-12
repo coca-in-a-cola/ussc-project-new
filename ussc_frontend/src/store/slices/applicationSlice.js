@@ -62,6 +62,11 @@ export const sendApplication = createAsyncThunk(
       });
 
       response = await response.json();
+
+      if (!response.success) {
+        throw new Error(`${response.status}`);
+      }
+
       debugger;
       dispatch(getApplicationsByUserId(userId));
       // alert("Заявка успешно отправлена!")
@@ -130,7 +135,7 @@ const applicationSlice = createSlice({
     [getApplicationsByUserId.rejected]: () => {},
     [sendApplication.pending]: () => {},
     [sendApplication.fulfilled]: () => {},
-    [sendApplication.rejected]: () => {},
+    [sendApplication.rejected]: () => {throw new Error()},
   },
 });
 

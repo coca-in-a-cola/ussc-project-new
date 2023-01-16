@@ -6,6 +6,11 @@ import { getProfile, updateProfileInfo } from '../store/slices/profileSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { fillProfileInfo } from '../store/slices/profileSlice';
 import { useProfile } from '../hooks/use-profile';
+import {toast} from "react-toastify";
+import {addFileDirections} from "../store/slices/directionSlice";
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProfilePage = () => {
   useEffect(() => {
@@ -20,10 +25,19 @@ const ProfilePage = () => {
 
   const onProfileFormSubmit = (data) => {
     if (!isFilledProfile()) {
-      dispatch(fillProfileInfo(data));
+      toast.promise(dispatch(fillProfileInfo(data)), {
+        pending: 'Выполняю запрос',
+        success: 'Запрос успешно выполнен 👌',
+        error: 'Запрос отклонён 🤯'
+      })
       return;
     }
-    dispatch(updateProfileInfo(data));
+
+    toast.promise(dispatch(updateProfileInfo(data)), {
+      pending: 'Выполняю запрос',
+      success: 'Запрос успешно выполнен 👌',
+      error: 'Запрос отклонён 🤯'
+    })
   };
 
   return (

@@ -6,7 +6,6 @@ import { getProfile, updateProfileInfo } from '../store/slices/profileSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { fillProfileInfo } from '../store/slices/profileSlice';
 import { useProfile } from '../hooks/use-profile';
-import {toast} from "react-toastify";
 import {addFileDirections} from "../store/slices/directionSlice";
 
 import { toast } from 'react-toastify';
